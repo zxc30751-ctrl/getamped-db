@@ -1,84 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="겟앰프드 액세서리 정보를 검색하고 필터링하는 비공식 데이터베이스입니다.">
+    <title>GetAmped DB</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
 
-    <header>
-        <h1>🎮 겟앰프드 DB</h1>
-<link rel="stylesheet" href="style.css">
-        <nav>
-            <a href="#">홈</a>
-            <a href="#">액세서리</a>
-            <a href="#">캐릭터</a>
-            <a href="#">강화카드</a>
-            <a href="#">공략</a>
-        </nav>
-    </header>
+<header class="site-header">
+    <div class="header-inner">
+        <button class="brand" type="button" id="home-button" aria-label="GetAmped DB 홈">
+            <span class="brand-mark">G</span>
+            <span>
+                <strong>GetAmped DB</strong>
+                <small>비공식 액세서리 데이터베이스</small>
+            </span>
+        </button>
+    </div>
+</header>
 
-    <main>
+<main class="container">
 
-        <h2>겟앰프드 정보를 한곳에서!</h2>
-
-        <p>
-            액세서리, 캐릭터, 강화카드, 공략 정보를 검색해보세요.
+    <section class="hero" id="hero-section">
+        <p class="eyebrow">GETAMPED ACCESSORY DATABASE</p>
+        <h1>궁금한 액세서리,<br>여기서 바로 찾아보세요.</h1>
+        <p class="hero-copy">
+            검색 · 출시연도 · 획득처 · 능력치 필터로 흩어진 정보를 빠르게 확인할 수 있습니다.
         </p>
 
         <div class="search-box">
-            <input type="text" placeholder="액세서리, 캐릭터 검색">
-            <button>🔍 검색</button>
+            <input
+                type="search"
+                id="search-input"
+                placeholder="액세서리 이름 검색"
+                autocomplete="off"
+                aria-label="액세서리 검색"
+            >
+            <button type="button" id="search-button">검색</button>
         </div>
-<div id="search-result"></div>
-<section id="detail-view" class="hidden"></section>
-<section class="accessory-section">
+    </section>
 
-    <h2>액세서리 목록</h2>
+    <section class="accessory-section">
 
-   <div class="filter-box">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">ACCESSORIES</p>
+                <h2>액세서리 목록</h2>
+            </div>
 
-    <div class="filter-item">
-        <label for="year-filter">출시연도</label>
+            <button type="button" class="ghost-button" id="reset-button">
+                필터 초기화
+            </button>
+        </div>
 
-        <select id="year-filter">
-            <option value="all">전체 연도</option>
-            <option value="2024">2024</option>
-            <option value="2025">2025</option>
-            <option value="2026">2026</option>
-        </select>
+        <div class="filters">
+
+            <label>
+                <span>출시연도</span>
+                <select id="year-filter">
+                    <option value="all">전체</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                </select>
+            </label>
+
+            <label>
+                <span>획득처</span>
+                <select id="acquisition-filter">
+                    <option value="all">전체</option>
+                    <option value="보급상자">보급상자</option>
+                    <option value="이벤트">이벤트</option>
+                    <option value="패키지">패키지</option>
+                    <option value="챌린지">챌린지</option>
+                    <option value="수집북">수집북</option>
+                    <option value="패스">패스</option>
+                </select>
+            </label>
+
+            <label>
+                <span>능력치</span>
+                <select id="stat-filter">
+                    <option value="all">전체</option>
+                    <option value="str-up">STR 상승</option>
+                    <option value="tec-up">TEC 상승</option>
+                    <option value="spd-up">SPD 상승</option>
+                    <option value="jmp-up">JMP 상승</option>
+                    <option value="def-up">DEF 상승</option>
+                    <option value="stat-down">하락 능력치 있음</option>
+                    <option value="no-change">능력치 변화 없음</option>
+                </select>
+            </label>
+
+            <label>
+                <span>정렬</span>
+                <select id="sort-filter">
+                    <option value="latest">최신순</option>
+                    <option value="oldest">오래된순</option>
+                    <option value="name">이름순</option>
+                </select>
+            </label>
+
+        </div>
+
+        <div class="result-toolbar">
+            <p id="result-count">총 0개의 액세서리</p>
+            <p id="search-result" aria-live="polite"></p>
+        </div>
+
+        <div id="accessory-list" class="accessory-grid"></div>
+
+    </section>
+
+    <section id="detail-view" class="detail-view hidden" aria-live="polite"></section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <p>
+            GetAmped DB는 팬이 제작한 비공식 정보 사이트입니다.
+            게임사 및 공식 서비스와 제휴·공식 관계가 없습니다.
+        </p>
+        <p>정보는 공식 업데이트 및 확인 가능한 출처를 기준으로 정리합니다.</p>
     </div>
-<div class="filter-item">
-    <label for="stat-filter">능력치</label>
+</footer>
 
-    <select id="stat-filter">
-        <option value="all">전체</option>
-        <option value="str-up">STR 증가</option>
-        <option value="tec-up">TEC 증가</option>
-        <option value="spd-up">SPD 증가</option>
-        <option value="jmp-up">JMP 증가</option>
-        <option value="def-up">DEF 증가</option>
-        <option value="stat-down">능력치 감소 있음</option>
-        <option value="no-change">능력치 변화 없음</option>
-    </select>
-</div>
-
-    <div class="filter-item">
-        <label for="acquisition-filter">획득처</label>
-
-        <select id="acquisition-filter">
-            <option value="all">전체</option>
-            <option value="보급상자">보급상자</option>
-            <option value="이벤트">이벤트</option>
-            <option value="패키지">패키지</option>
-            <option value="챌린지">챌린지</option>
-            <option value="수집북">수집북</option>
-            <option value="패스">패스</option>
-        </select>
-    </div>
-
-</div>
-
-    <p id="result-count"></p>
-
-    <div id="accessory-list"></div>
-
-</section>
-    </main>
 <script src="data.js"></script>
 <script src="script.js"></script>
 </body>
+</html>

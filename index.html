@@ -1,0 +1,84 @@
+<body>
+
+    <header>
+        <h1>🎮 겟앰프드 DB</h1>
+<link rel="stylesheet" href="style.css">
+        <nav>
+            <a href="#">홈</a>
+            <a href="#">액세서리</a>
+            <a href="#">캐릭터</a>
+            <a href="#">강화카드</a>
+            <a href="#">공략</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <h2>겟앰프드 정보를 한곳에서!</h2>
+
+        <p>
+            액세서리, 캐릭터, 강화카드, 공략 정보를 검색해보세요.
+        </p>
+
+        <div class="search-box">
+            <input type="text" placeholder="액세서리, 캐릭터 검색">
+            <button>🔍 검색</button>
+        </div>
+<div id="search-result"></div>
+<section id="detail-view" class="hidden"></section>
+<section class="accessory-section">
+
+    <h2>액세서리 목록</h2>
+
+   <div class="filter-box">
+
+    <div class="filter-item">
+        <label for="year-filter">출시연도</label>
+
+        <select id="year-filter">
+            <option value="all">전체 연도</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+            <option value="2026">2026</option>
+        </select>
+    </div>
+<div class="filter-item">
+    <label for="stat-filter">능력치</label>
+
+    <select id="stat-filter">
+        <option value="all">전체</option>
+        <option value="str-up">STR 증가</option>
+        <option value="tec-up">TEC 증가</option>
+        <option value="spd-up">SPD 증가</option>
+        <option value="jmp-up">JMP 증가</option>
+        <option value="def-up">DEF 증가</option>
+        <option value="stat-down">능력치 감소 있음</option>
+        <option value="no-change">능력치 변화 없음</option>
+    </select>
+</div>
+
+    <div class="filter-item">
+        <label for="acquisition-filter">획득처</label>
+
+        <select id="acquisition-filter">
+            <option value="all">전체</option>
+            <option value="보급상자">보급상자</option>
+            <option value="이벤트">이벤트</option>
+            <option value="패키지">패키지</option>
+            <option value="챌린지">챌린지</option>
+            <option value="수집북">수집북</option>
+            <option value="패스">패스</option>
+        </select>
+    </div>
+
+</div>
+
+    <p id="result-count"></p>
+
+    <div id="accessory-list"></div>
+
+</section>
+    </main>
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>

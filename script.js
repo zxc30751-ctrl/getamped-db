@@ -381,7 +381,6 @@ function applyFilters() {
 }
 
 
-    showAccessoryList(filteredAccessories);
 
 
 
